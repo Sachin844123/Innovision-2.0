@@ -28,7 +28,7 @@ A modern, interactive event website built with React 19, Vite, and advanced anim
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Sachin844123/Innovision-2.0.git
    cd innovision-2
    ```
 
