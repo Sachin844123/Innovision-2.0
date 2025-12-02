@@ -61,7 +61,7 @@ const Hero = () => {
                 </div>
 
                 <p className="text-gray-400 mb-10 text-lg md:text-xl max-w-2xl mx-auto">
-                    Organized by IT Dept. Experience the future of technology where gravity is just a suggestion.
+                    Organized by IT Dept.
                 </p>
 
                 <button

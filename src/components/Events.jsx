@@ -18,7 +18,8 @@ const eventsData = [
         teamSize: "5 Members",
         prize: "₹10,000",
         image: "https://images.unsplash.com/photo-1624138784181-dc7f5b75e52e?q=80&w=1000&auto=format&fit=crop",
-        color: "from-red-500 to-rose-600"
+        color: "from-red-500 to-rose-600",
+        registrationLink: "https://forms.google.com/valorant-registration"
     },
     {
         id: 2,
@@ -30,7 +31,8 @@ const eventsData = [
         teamSize: "3 Members",
         prize: "₹5,000",
         image: "https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=1000&auto=format&fit=crop",
-        color: "from-blue-500 to-cyan-500"
+        color: "from-blue-500 to-cyan-500",
+        registrationLink: "https://forms.google.com/rocket-league-registration"
     },
     {
         id: 3,
@@ -42,7 +44,8 @@ const eventsData = [
         teamSize: "2-4 Members",
         prize: "₹20,000",
         image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1000&auto=format&fit=crop",
-        color: "from-green-500 to-emerald-600"
+        color: "from-green-500 to-emerald-600",
+        registrationLink: "https://forms.google.com/hackathon-registration"
     },
     {
         id: 4,
@@ -54,7 +57,8 @@ const eventsData = [
         teamSize: "Individual",
         prize: "₹3,000",
         image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
-        color: "from-yellow-500 to-amber-600"
+        color: "from-yellow-500 to-amber-600",
+        registrationLink: "https://forms.google.com/coding-registration"
     },
     {
         id: 5,
@@ -66,7 +70,8 @@ const eventsData = [
         teamSize: "Individual",
         prize: "₹4,000",
         image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop",
-        color: "from-purple-500 to-pink-600"
+        color: "from-purple-500 to-pink-600",
+        registrationLink: "https://forms.google.com/uiux-registration"
     },
     {
         id: 6,
@@ -78,7 +83,8 @@ const eventsData = [
         teamSize: "2 Members",
         prize: "₹6,000",
         image: "https://images.unsplash.com/photo-1563206767-5b1d97289374?q=80&w=1000&auto=format&fit=crop",
-        color: "from-indigo-500 to-violet-600"
+        color: "from-indigo-500 to-violet-600",
+        registrationLink: "https://forms.google.com/ctf-registration"
     },
     {
         id: 7,
@@ -90,7 +96,8 @@ const eventsData = [
         teamSize: "2 Members",
         prize: "₹2,000",
         image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1000&auto=format&fit=crop",
-        color: "from-orange-500 to-red-500"
+        color: "from-orange-500 to-red-500",
+        registrationLink: "https://forms.google.com/quiz-registration"
     },
     {
         id: 8,
@@ -102,7 +109,8 @@ const eventsData = [
         teamSize: "3-5 Members",
         prize: "₹8,000",
         image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000&auto=format&fit=crop",
-        color: "from-slate-500 to-gray-600"
+        color: "from-slate-500 to-gray-600",
+        registrationLink: "https://forms.google.com/robo-sumo-registration"
     }
 ];
 
@@ -202,7 +210,7 @@ const EventModal = ({ event, onClose }) => {
                     </div>
 
                     <a
-                        href="https://forms.google.com/example"
+                        href={event.registrationLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block w-full py-4 bg-gradient-to-r from-neon-purple to-cyber-blue text-white text-center font-bold font-orbitron tracking-wider rounded-xl hover:opacity-90 transition-opacity"

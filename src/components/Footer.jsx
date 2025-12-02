@@ -30,7 +30,7 @@ const Footer = () => {
                             INNOVISION<span className="text-neon-purple">2.0</span>
                         </h2>
                         <p className="text-gray-400 max-w-xs">
-                            The future is not just about technology. It's about defying the impossible. Join us in the antigravity revolution.
+                            Join us.
                         </p>
                     </div>
 
