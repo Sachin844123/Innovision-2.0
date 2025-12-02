@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Tilt } from 'react-tilt';
+import Tilt from 'react-parallax-tilt';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, MapPin, Users, Trophy } from 'lucide-react';
 import gsap from 'gsap';
@@ -108,7 +108,7 @@ const eventsData = [
 
 const EventCard = ({ event, onClick }) => {
     return (
-        <Tilt className="h-full" options={{ max: 25, scale: 1.05, speed: 400 }}>
+        <Tilt className="h-full" tiltMaxAngleX={25} tiltMaxAngleY={25} scale={1.05} transitionSpeed={400}>
             <div
                 className="relative h-full glass-panel rounded-xl overflow-hidden cursor-pointer group border border-white/10 hover:border-neon-purple/50 transition-all duration-300"
                 onClick={() => onClick(event)}
