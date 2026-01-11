@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
-import SmoothScroll from './components/SmoothScroll';
-import CustomCursor from './components/CustomCursor';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Events from './components/Events';
-import Footer from './components/Footer';
-import Preloader from './components/Preloader';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import AdminPanel from './components/AdminPanel';
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
-    <>
-      {loading && <Preloader onComplete={() => setLoading(false)} />}
-      <SmoothScroll>
-        <CustomCursor />
-        <Navbar />
-        <main className="relative w-full overflow-hidden bg-void-black text-white selection:bg-neon-purple selection:text-white">
-          <Hero />
-          <Events />
-          <Footer />
-        </main>
-      </SmoothScroll>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
+    </Router>
   );
 }
 

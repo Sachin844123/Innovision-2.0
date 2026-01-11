@@ -4,22 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, MapPin, Users, Trophy } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RegistrationModal from './RegistrationModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const eventsData = [
     {
         id: 1,
-        title: "Valorant: Zero Gravity",
+        title: "Free Fire Max: Battle Royale",
         category: "E-Sports",
-        description: "Defy physics in this high-stakes tactical shooter tournament. 5v5 combat where precision meets strategy.",
+        description: "Survival of the fittest. Drop into the battleground, loot, and outlast your opponents in this intense Battle Royale.",
         date: "Day 1 - 10:00 AM",
         venue: "Gaming Lab A",
-        teamSize: "5 Members",
+        teamSize: "4 Members",
         prize: "₹10,000",
-        image: "https://images.unsplash.com/photo-1624138784181-dc7f5b75e52e?q=80&w=1000&auto=format&fit=crop",
-        color: "from-red-500 to-rose-600",
-        registrationLink: "https://forms.google.com/valorant-registration"
+        image: "/images/free_fire.png",
+        color: "from-orange-500 to-red-600",
+        registrationLink: "" // No longer needed
     },
     {
         id: 2,
@@ -30,7 +31,7 @@ const eventsData = [
         venue: "Gaming Lab B",
         teamSize: "3 Members",
         prize: "₹5,000",
-        image: "https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/rocket_league.png",
         color: "from-blue-500 to-cyan-500",
         registrationLink: "https://forms.google.com/rocket-league-registration"
     },
@@ -43,22 +44,22 @@ const eventsData = [
         venue: "Main Auditorium",
         teamSize: "2-4 Members",
         prize: "₹20,000",
-        image: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/hackathon.png",
         color: "from-green-500 to-emerald-600",
         registrationLink: "https://forms.google.com/hackathon-registration"
     },
     {
         id: 4,
-        title: "Quantum Code",
+        title: "Blind Type",
         category: "Technical",
-        description: "Competitive coding challenge. Solve algorithmic puzzles faster than the speed of light.",
+        description: "Test your touch-typing skills. Type accurate code without looking at the screen or seeing what you type.",
         date: "Day 2 - 2:00 PM",
         venue: "Lab 3",
         teamSize: "Individual",
         prize: "₹3,000",
-        image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/blind_type.png",
         color: "from-yellow-500 to-amber-600",
-        registrationLink: "https://forms.google.com/coding-registration"
+        registrationLink: ""
     },
     {
         id: 5,
@@ -69,7 +70,7 @@ const eventsData = [
         venue: "Design Studio",
         teamSize: "Individual",
         prize: "₹4,000",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/ui_ux.png",
         color: "from-purple-500 to-pink-600",
         registrationLink: "https://forms.google.com/uiux-registration"
     },
@@ -82,7 +83,7 @@ const eventsData = [
         venue: "Cyber Lab",
         teamSize: "2 Members",
         prize: "₹6,000",
-        image: "https://images.unsplash.com/photo-1563206767-5b1d97289374?q=80&w=1000&auto=format&fit=crop",
+        image: "/images/cyber_security.png",
         color: "from-indigo-500 to-violet-600",
         registrationLink: "https://forms.google.com/ctf-registration"
     },
@@ -149,7 +150,7 @@ const EventCard = ({ event, onClick }) => {
     );
 };
 
-const EventModal = ({ event, onClose }) => {
+const EventModal = ({ event, onClose, onRegister }) => {
     if (!event) return null;
 
     return (
@@ -209,14 +210,12 @@ const EventModal = ({ event, onClose }) => {
                         </div>
                     </div>
 
-                    <a
-                        href={event.registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <button
+                        onClick={() => onRegister(event)}
                         className="block w-full py-4 bg-gradient-to-r from-neon-purple to-cyber-blue text-white text-center font-bold font-orbitron tracking-wider rounded-xl hover:opacity-90 transition-opacity"
                     >
                         REGISTER NOW
-                    </a>
+                    </button>
                 </div>
             </motion.div>
         </motion.div>
@@ -225,6 +224,7 @@ const EventModal = ({ event, onClose }) => {
 
 const Events = () => {
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [registeringEvent, setRegisteringEvent] = useState(null);
     const containerRef = useRef(null);
 
     useEffect(() => {
@@ -270,7 +270,20 @@ const Events = () => {
 
             <AnimatePresence>
                 {selectedEvent && (
-                    <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+                    <EventModal
+                        event={selectedEvent}
+                        onClose={() => setSelectedEvent(null)}
+                        onRegister={(event) => {
+                            setSelectedEvent(null);
+                            setRegisteringEvent(event);
+                        }}
+                    />
+                )}
+                {registeringEvent && (
+                    <RegistrationModal
+                        event={registeringEvent}
+                        onClose={() => setRegisteringEvent(null)}
+                    />
                 )}
             </AnimatePresence>
         </section>
