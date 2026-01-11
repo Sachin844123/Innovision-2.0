@@ -33,7 +33,7 @@ const eventsData = [
         prize: "₹5,000",
         image: "/images/rocket_league.png",
         color: "from-blue-500 to-cyan-500",
-        registrationLink: "https://forms.google.com/rocket-league-registration"
+        registrationLink: ""
     },
     {
         id: 3,
@@ -46,7 +46,7 @@ const eventsData = [
         prize: "₹20,000",
         image: "/images/hackathon.png",
         color: "from-green-500 to-emerald-600",
-        registrationLink: "https://forms.google.com/hackathon-registration"
+        registrationLink: ""
     },
     {
         id: 4,
@@ -72,7 +72,7 @@ const eventsData = [
         prize: "₹4,000",
         image: "/images/ui_ux.png",
         color: "from-purple-500 to-pink-600",
-        registrationLink: "https://forms.google.com/uiux-registration"
+        registrationLink: ""
     },
     {
         id: 6,
@@ -85,7 +85,7 @@ const eventsData = [
         prize: "₹6,000",
         image: "/images/cyber_security.png",
         color: "from-indigo-500 to-violet-600",
-        registrationLink: "https://forms.google.com/ctf-registration"
+        registrationLink: ""
     },
     {
         id: 7,
@@ -98,7 +98,7 @@ const eventsData = [
         prize: "₹2,000",
         image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1000&auto=format&fit=crop",
         color: "from-orange-500 to-red-500",
-        registrationLink: "https://forms.google.com/quiz-registration"
+        registrationLink: ""
     },
     {
         id: 8,
@@ -111,7 +111,7 @@ const eventsData = [
         prize: "₹8,000",
         image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1000&auto=format&fit=crop",
         color: "from-slate-500 to-gray-600",
-        registrationLink: "https://forms.google.com/robo-sumo-registration"
+        registrationLink: ""
     }
 ];
 
@@ -128,19 +128,19 @@ const EventCard = ({ event, onClick }) => {
                     alt={event.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="relative z-20 p-6">
-                    <span className={`inline-block px-3 py-1 text-xs font-bold rounded-full bg-gradient-to-r ${event.color} text-white mb-3`}>
+                <div className="relative z-20 p-4 md:p-6">
+                    <span className={`inline-block px-2 py-0.5 md:px-3 md:py-1 text-[10px] md:text-xs font-bold rounded-full bg-gradient-to-r ${event.color} text-white mb-2 md:mb-3`}>
                         {event.category}
                     </span>
-                    <h3 className="text-xl font-orbitron font-bold text-white mb-2 group-hover:text-neon-purple transition-colors">
+                    <h3 className="text-lg md:text-xl font-orbitron font-bold text-white mb-1 md:mb-2 group-hover:text-neon-purple transition-colors">
                         {event.title}
                     </h3>
-                    <p className="text-gray-400 text-sm line-clamp-2 mb-4">
+                    <p className="text-gray-400 text-xs md:text-sm line-clamp-2 mb-3 md:mb-4">
                         {event.description}
                     </p>
-                    <div className="flex items-center text-cyber-blue text-sm font-medium">
+                    <div className="flex items-center text-cyber-blue text-xs md:text-sm font-medium">
                         <span>View Details</span>
-                        <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3 h-3 md:w-4 md:h-4 ml-1 md:ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </div>
@@ -261,7 +261,7 @@ const Events = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {eventsData.map((event) => (
-                        <div key={event.id} className="event-card h-full">
+                        <div key={event.id} className="event-card h-full w-[85%] mx-auto md:w-full">
                             <EventCard event={event} onClick={setSelectedEvent} />
                         </div>
                     ))}

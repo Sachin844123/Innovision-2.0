@@ -62,8 +62,8 @@ const Footer = () => {
                         </div>
                         <div className="mt-8">
                             <h4 className="text-sm font-bold text-gray-300 mb-2">Faculty Coordinators</h4>
-                            <p className="text-gray-500 text-sm">Dr. Alan Grant</p>
-                            <p className="text-gray-500 text-sm">Prof. Sarah Connor</p>
+                            <p className="text-gray-500 text-sm">Prof. 1</p>
+                            <p className="text-gray-500 text-sm">Prof. 2</p>
                         </div>
                     </div>
                 </div>

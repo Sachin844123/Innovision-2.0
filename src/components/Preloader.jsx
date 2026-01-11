@@ -56,7 +56,7 @@ const Preloader = ({ onComplete }) => {
                     />
                 </div>
                 <p className="mt-4 text-cyber-blue tracking-widest text-sm uppercase animate-pulse">
-                    Preparing epic events for you ....
+                    Opening the Innovision Portal ....
                 </p>
             </div>
         </div>

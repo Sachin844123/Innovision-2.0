@@ -1,51 +1,84 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Stars } from '@react-three/drei';
+import { Stars } from '@react-three/drei';
+import * as THREE from 'three';
 
-const GeometricShape = ({ position, color, geometry }) => {
-    const meshRef = useRef();
+const WaveLines = () => {
+    const linesRef = useRef();
+
+    // Create multiple concentric lines with organic distortion
+    const count = 20;
+    const radius = 8;
+
+    const lines = useMemo(() => {
+        return new Array(count).fill(0).map((_, i) => {
+            const y = (i - count / 2) * 0.5;
+            const pts = [];
+            const segments = 100;
+            for (let j = 0; j <= segments; j++) {
+                const theta = (j / segments) * Math.PI * 2;
+                // Base circle
+                let x = Math.cos(theta) * radius;
+                let z = Math.sin(theta) * radius;
+
+                // Add noise/distortion
+                const noise = Math.sin(theta * 5 + i) * 0.5 + Math.cos(theta * 3 - i) * 0.5;
+                const scale = 1 + noise * 0.1 * (i % 3 === 0 ? 1.5 : 0.5); // Vary scale per line
+
+                x *= scale;
+                z *= scale;
+
+                pts.push(new THREE.Vector3(x, y, z));
+            }
+            const geometry = new THREE.BufferGeometry().setFromPoints(pts);
+            return { geometry, y, speed: (Math.random() * 0.2 + 0.1) * (i % 2 === 0 ? 1 : -1) };
+        });
+    }, []);
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        meshRef.current.rotation.x = time * 0.2;
-        meshRef.current.rotation.y = time * 0.3;
+        if (linesRef.current) {
+            linesRef.current.children.forEach((child, i) => {
+                // Rotate each line slowly
+                child.rotation.y = time * 0.1 + i * 0.05;
+                // Gentle floating wave
+                child.position.y = lines[i].y + Math.sin(time * 0.5 + i) * 0.2;
+            });
+        }
     });
 
     return (
-        <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-            <mesh ref={meshRef} position={position}>
-                {geometry === 'box' && <boxGeometry args={[1, 1, 1]} />}
-                {geometry === 'octahedron' && <octahedronGeometry args={[1, 0]} />}
-                {geometry === 'torus' && <torusGeometry args={[0.8, 0.2, 16, 32]} />}
-                <meshStandardMaterial
-                    color={color}
-                    roughness={0.2}
-                    metalness={0.8}
-                    emissive={color}
-                    emissiveIntensity={0.5}
-                    wireframe
-                />
-            </mesh>
-        </Float>
+        <group ref={linesRef} rotation={[0.4, 0, 0]} position={[4, 0, 0]}>
+            {lines.map((line, i) => (
+                <line key={i} geometry={line.geometry}>
+                    <lineBasicMaterial
+                        color={new THREE.Color().setHSL(0.7 + i * 0.01, 1, 0.6)}
+                        transparent
+                        opacity={0.6 - Math.abs(i - count / 2) * 0.04}
+                        linewidth={2}
+                    />
+                </line>
+            ))}
+        </group>
     );
 };
 
 const FloatingShapes = () => {
     return (
-        <div className="absolute inset-0 z-0">
-            <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
-                <pointLight position={[-10, -10, -10]} intensity={1} color="#06b6d4" />
+        <div className="absolute inset-0 z-0 bg-void-black">
+            <Canvas camera={{ position: [0, 0, 15], fov: 40 }}>
+                <ambientLight intensity={0.2} />
 
-                <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+                <Stars radius={100} depth={50} count={3000} factor={3} saturation={0} fade speed={0.5} />
 
-                <GeometricShape position={[-3, 2, -2]} color="#a855f7" geometry="octahedron" />
-                <GeometricShape position={[4, -1, -3]} color="#06b6d4" geometry="torus" />
-                <GeometricShape position={[-2, -3, -1]} color="#a855f7" geometry="box" />
-                <GeometricShape position={[3, 3, -4]} color="#06b6d4" geometry="octahedron" />
-                <GeometricShape position={[0, 0, -5]} color="#ffffff" geometry="torus" />
+                <WaveLines />
+
+                {/* Subtle fog for depth */}
+                <fog attach="fog" args={['#0a0a0a', 10, 25]} />
             </Canvas>
+
+            {/* Gradient Overlay for blending */}
+            <div className="absolute inset-0 bg-gradient-to-r from-void-black via-transparent to-transparent pointer-events-none" />
         </div>
     );
 };
