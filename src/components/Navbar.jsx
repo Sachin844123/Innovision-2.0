@@ -22,10 +22,10 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'glass-panel py-4' : 'py-6 bg-transparent'
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled && !isOpen ? 'glass-panel py-4' : 'py-6 bg-transparent'
                 }`}
         >
-            <div className="container mx-auto px-6 flex justify-between items-center">
+            <div className="container mx-auto px-6 flex justify-between items-center relative z-50">
                 <a href="#" className="text-2xl font-orbitron font-bold tracking-wider text-white neon-text">
                     INNOVISION<span className="text-neon-purple">2.0</span>
                 </a>
@@ -55,19 +55,22 @@ const Navbar = () => {
 
             {/* Mobile Menu Overlay */}
             <div
-                className={`fixed inset-0 bg-void-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 transition-transform duration-300 md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
+                className={`fixed top-0 right-0 h-full w-1/2 bg-black/95 border-l border-white/10 backdrop-blur-xl z-40 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
             >
-                {navLinks.map((link) => (
-                    <a
-                        key={link.name}
-                        href={link.href}
-                        className="text-2xl font-orbitron text-white hover:text-neon-purple transition-colors"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        {link.name}
-                    </a>
-                ))}
+                <div className="flex flex-col h-full pt-24 px-8 space-y-6">
+                    {navLinks.map((link) => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            className="text-lg font-orbitron font-medium text-white/80 hover:text-cyan-400 hover:pl-2 transition-all duration-300 border-b border-white/5 pb-2"
+                            onClick={() => setIsOpen(false)}
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+
+                </div>
             </div>
         </nav>
     );

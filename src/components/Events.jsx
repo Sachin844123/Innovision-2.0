@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { X, Calendar, MapPin, Users, Trophy } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -226,6 +226,16 @@ const Events = () => {
     const [selectedEvent, setSelectedEvent] = useState(null);
     const [registeringEvent, setRegisteringEvent] = useState(null);
     const containerRef = useRef(null);
+    const sectionRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"]
+    });
+
+    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.3]);
+    const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.95, 1, 1, 0.98]);
+    const y = useTransform(scrollYProgress, [0, 1], [100, -50]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -245,13 +255,21 @@ const Events = () => {
     }, []);
 
     return (
-        <section id="events" className="relative py-20 px-4 md:px-10 min-h-screen bg-void-black" ref={containerRef}>
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <motion.section
+            id="events"
+            ref={sectionRef}
+            className="relative py-20 px-4 md:px-10 min-h-screen bg-void-black"
+            style={{ opacity, scale }}
+        >
+            <motion.div
+                className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none"
+                style={{ y }}
+            >
                 <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-[100px]" />
                 <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-cyber-blue/10 rounded-full blur-[100px]" />
-            </div>
+            </motion.div>
 
-            <div className="container mx-auto relative z-10">
+            <div className="container mx-auto relative z-10" ref={containerRef}>
                 <div className="text-center mb-16">
                     <h2 className="text-cyber-blue tracking-[0.3em] text-sm font-bold mb-2 uppercase">Explore The Unknown</h2>
                     <h3 className="text-4xl md:text-5xl font-orbitron font-bold text-white neon-text">
@@ -286,7 +304,7 @@ const Events = () => {
                     />
                 )}
             </AnimatePresence>
-        </section>
+        </motion.section>
     );
 };
 
