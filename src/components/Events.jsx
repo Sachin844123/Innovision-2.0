@@ -255,11 +255,10 @@ const Events = () => {
     }, []);
 
     return (
-        <motion.section
+        <section
             id="events"
             ref={sectionRef}
             className="relative py-20 px-4 md:px-10 min-h-screen bg-void-black"
-            style={{ opacity, scale }}
         >
             <motion.div
                 className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none"
@@ -304,7 +303,7 @@ const Events = () => {
                     />
                 )}
             </AnimatePresence>
-        </motion.section>
+        </section>
     );
 };
 
