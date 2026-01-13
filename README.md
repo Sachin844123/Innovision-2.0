@@ -1,4 +1,4 @@
-# Innovision 2.0
+# Innovision 3.0
 
 A modern, interactive event website built with React 19, Vite, and advanced animation libraries. This project features a premium UI with smooth scrolling, custom cursors, and 3D elements.
 
@@ -28,7 +28,7 @@ A modern, interactive event website built with React 19, Vite, and advanced anim
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Sachin844123/Innovision-2.0.git
+   git clone https://github.com/Sachin844123/Innovision-3.0.git
    cd innovision-2
    ```
 

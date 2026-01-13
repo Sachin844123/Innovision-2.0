@@ -27,7 +27,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
                     <div>
                         <h2 className="text-3xl font-orbitron font-bold text-white mb-6">
-                            INNOVISION<span className="text-neon-purple">2.0</span>
+                            INNOVISION<span className="text-neon-purple">3.0</span>
                         </h2>
                         <p className="text-gray-400 max-w-xs">
                             Join us.
@@ -70,7 +70,7 @@ const Footer = () => {
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-gray-500 text-sm mb-4 md:mb-0">
-                        © 2026 Innovision 2.0.
+                        © 2026 Innovision 3.0.
                     </p>
                     <div className="flex items-center space-x-2 text-gray-500 text-sm">
                         <span>Designed with</span>

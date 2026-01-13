@@ -27,7 +27,7 @@ const Navbar = () => {
         >
             <div className="container mx-auto px-6 flex justify-between items-center relative z-50">
                 <a href="#" className="text-2xl font-orbitron font-bold tracking-wider text-white neon-text">
-                    INNOVISION<span className="text-neon-purple">2.0</span>
+                    INNOVISION<span className="text-neon-purple">3.0</span>
                 </a>
 
                 {/* Desktop Menu */}

@@ -1,13 +1,14 @@
 /* Mobile-specific overrides */
 @media only screen and (max-width: 768px) {
 
-    /* Hero Parent - Disable vertical centering */
+    /* Hero Parent - Center content vertically */
     .hero-section {
-        justify-content: flex-start !important;
-        padding-top: 15vh !important;
-        /* Start content lower down */
-        height: auto !important;
-        /* Allow growing if needed, though screen height is usually enough */
+        justify-content: center !important;
+        align-items: center !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        /* Center content vertically */
+        height: 100vh !important;
         min-height: 100vh !important;
     }
 
@@ -16,7 +17,7 @@
         font-size: 2.5rem !important;
         /* Was 6xl/9xl */
         line-height: 1.2 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.25rem !important;
     }
 
     .hero-subtitle {
@@ -46,8 +47,19 @@
 
     /* Adjust main container padding */
     .hero-content {
-        padding-top: 4rem !important;
-        /* Space between Top HUD and Title */
+        padding-top: 0 !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        padding-bottom: 0 !important;
+        /* Center content vertically */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        min-height: auto !important;
     }
 
     /* Grid Layout for HUD Boxes - Stack them with less gap */
@@ -59,11 +71,53 @@
 
     /* CTA Button */
     .cta-button {
-        padding: 0.8rem 1.5rem !important;
-        width: 100% !important;
+        padding: 0.875rem 1.5rem !important;
+        width: calc(100% - 2rem) !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure button wrapper is centered */
+    .hero-content button.cta-button {
+        align-self: center !important;
+        flex-shrink: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     .cta-text {
-        font-size: 0.9rem !important;
+        font-size: 0.875rem !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    /* Ensure proper spacing for subtitle container */
+    .hero-content > div:first-child {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Override mb-8 and md:mb-12 classes from Hero component */
+    .hero-content > div.mb-8,
+    .hero-content > div[class*="mb-8"],
+    .hero-content > div[class*="mb-12"] {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Proper spacing between subtitle and button */
+    .hero-content > div:first-child p {
+        margin-bottom: 0 !important;
+        margin-top: 0.75rem !important;
+    }
+    
+    /* Override mt-4 class on subtitle paragraph */
+    .hero-content > div:first-child p.mt-4,
+    .hero-content > div:first-child p[class*="mt-4"] {
+        margin-top: 0.75rem !important;
     }
 }
